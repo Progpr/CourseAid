@@ -1,4 +1,4 @@
-# CourseAid - Database Management Systems Project
+# CourseAid - A better RateMyProfessor
 
 ## Introduction
 
