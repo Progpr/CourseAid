@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Course selection can often feel overwhelming. As master's students, we frequently spend a lot of time researching and comparing courses to determine which ones will best enhance our learning experience. While platforms like Rate My Professor are commonly used to gather insights, they are primarily designed for searching specific professors rather than exploring courses holistically. The existing navigation and filters are also limited, making it difficult to obtain comprehensive and comparative information for students.
+Course selection can often feel overwhelming. As a master's student, I frequently spend a lot of time researching and comparing courses to determine which ones will best enhance our learning experience. While platforms like Rate My Professor are commonly used to gather insights, they are primarily designed for searching specific professors rather than exploring courses holistically. The existing navigation and filters are also limited, making it difficult to obtain comprehensive and comparative information for students.
 
-Our project aims to create a centralized hub for all course-related information. This application integrates objective course descriptions, student reviews, and perceptions of course difficulty based on the professor teaching the course. Additionally, it features robust filtering and search capabilities, enabling students to make more informed decisions when planning their academic paths.
+This project aims to create a centralized hub for all course-related information. This application integrates objective course descriptions, student reviews, and perceptions of course difficulty based on the professor teaching the course. Additionally, it features robust filtering and search capabilities, enabling students to make more informed decisions when planning their academic paths.
 
 ## Technical Specifications
 
