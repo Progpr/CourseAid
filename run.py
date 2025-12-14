@@ -3,4 +3,4 @@ from app import app
 app=app
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(port=7860, debug=False)
