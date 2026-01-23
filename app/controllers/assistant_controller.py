@@ -79,7 +79,6 @@ def answer_question(conn):
         }), 500
 
     finally:
-        cursor.close()
         conn.close()
 
 
