@@ -38,6 +38,7 @@ def register():
 
         flash(error)
         cursor.close()
+        db.close()
 
     return render_template('auth/register.html')
 
@@ -67,6 +68,7 @@ def login():
 
         flash(error)
         cursor.close()
+        db.close()
 
     return render_template('auth/login.html')
 

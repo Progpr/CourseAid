@@ -6,7 +6,6 @@ from flask import (g, session)
 from .. import app
 from app.config.db_connection import connect
 
-conn = connect()
 
 
 #---- Reviews forms ----#
@@ -35,6 +34,7 @@ def get_assistant():
 @app.route('/assistant/chat', methods=['POST'])
 @login_required
 def assistant_chat():
+    conn = connect()
     return assistant_controller.answer_question(conn)
 
 
@@ -46,6 +46,7 @@ def instructor_review(instructor_name):
     Endpoint for getting reviews for a given instructor
 
     """
+    conn = connect()
     return review_controller.get_reviews_for_instructor(conn, instructor_name)
 
 @app.route("/reviews/<int:review_id>/vote", methods=["POST"])
@@ -55,6 +56,7 @@ def handle_votes(review_id):
         Endpoint for creating/updating/deleting a vote on a review
 
     """
+    conn = connect()
     return vote_controller.handle_votes(conn, review_id)
 
 
@@ -65,6 +67,7 @@ def get_user_reviews():
     """
         Endpoint for getting reviews for a given user
     """
+    conn = connect()
     return review_controller.get_user_reviews(conn)
 
 @app.route("/user_reviews/<int:review_id>/edit", methods=["PATCH", "PUT"])
@@ -74,6 +77,7 @@ def edit_reviews(review_id):
         Endpoint for editing a past review for a given review_id
 
     """
+    conn = connect()
     return review_controller.edit_review(review_id, conn)
 
 @app.route("/user_reviews/<int:review_id>/delete", methods=["DELETE"])
@@ -83,6 +87,7 @@ def delete_reviews(review_id):
         Endpoint for editing a past review for a given review_id
 
     """
+    conn = connect()
     return review_controller.delete_review(review_id, conn)
 
 

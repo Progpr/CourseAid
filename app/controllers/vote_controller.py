@@ -71,3 +71,7 @@ def handle_votes(conn, review_id):
             'success': False,
             'message': f'Error: {str(e)}'
         }), 500
+
+    finally:
+        cursor.close()
+        conn.close()

@@ -36,6 +36,7 @@ def get_user_reviews(conn):
         finally:
 
             cursor.close()
+            conn.close()
 
         return render_template("reviews/pastreviews.html", reviews=result,
                                message = message, message_type="info")
@@ -113,6 +114,7 @@ def get_reviews_for_instructor(conn, instructor_name):
 
     finally:
         cursor.close()
+        conn.close()
 
     return render_template("reviews/professor_reviews.html",
                            reviews=result,
@@ -176,6 +178,9 @@ def edit_review(review_id, conn):
             'success':False,
             'message': message
         })
+    finally:
+        cursor.close()
+        conn.close()
 
 def delete_review(review_id, conn):
 
@@ -225,6 +230,10 @@ def delete_review(review_id, conn):
             'success': False,
             'message': message
         }), 500
+
+    finally:
+        cursor.close()
+        conn.close()
 
 def review_form(instructor_first,instructor_last):
     """Display review form for a specific professor"""

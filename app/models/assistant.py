@@ -27,7 +27,6 @@ class AssistantRoles:
 
     def __init__(self):
         load_dotenv()
-        self.conn = connect()
         with open("./app/utils/assistant_queries.json", "r") as file:
             self.assistant_queries = json.load(file)
 
@@ -42,7 +41,7 @@ class AssistantRoles:
 
     def get_database_results_for_relevant_reviews(self, cursor, user_query:str):
         query_embedding = self.embedding_model.encode_query(user_query)
-        cursor = self.conn.cursor()
+
         try:
             cursor.execute(self.assistant_queries["relevant_reviews_query"], ((query_embedding.tolist(),)))
 
@@ -120,17 +119,21 @@ class AssistantRoles:
         return messages
 
     async def generate_consensus_summary(self, instructor_first: str, instructor_last: str):
+        conn = connect()
+        try:
+            comments = Instructor.get_all_comments_for_instructor(conn.cursor(), instructor_first, instructor_last)
 
-        comments = Instructor.get_all_comments_for_instructor(self.conn.cursor(), instructor_first, instructor_last)
+            if not comments:
+                return "No reviews yet"
 
-        if not comments:
-            return "No reviews yet"
+            else:
+                messages = self.create_summary_prompt(comments)
 
-        else:
-            messages = self.create_summary_prompt(comments)
+                result = await self.chat(messages)
+                return result
+        finally:
+            conn.close()
 
-            result = await self.chat(messages)
-            return result
 
     async def generate_summary_for_all_instructors(self,rows):
         results = []
